@@ -4,8 +4,12 @@ function resetDOM() {
     <button id="changeColorButton">Change Background Color</button>
     <button id="resetColorButton">Reset Background Color</button>
     <p id="keyPressDisplay">Press any key...</p>
-    <input type="text" id="textInput" placeholder="Type something...">
+    <form id="inputForm">
+      <input type="text" id="textInput" placeholder="Type something...">
+      <button type="submit">Submit Input</button>
+    </form>
     <p id="textInputDisplay">Your input will be displayed here.</p>
+    <p id="formSubmitDisplay" aria-live="polite"></p>
   `
 }
 

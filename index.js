@@ -1,49 +1,54 @@
-// Handle Button Clicks
 
-// Function to change the background color when a button is clicked
+
+
 function changeBackgroundColor() {
-  // Implement the function to change background color
+  const red = Math.floor(Math.random() * 256)
+  const green = Math.floor(Math.random() * 256)
+  const blue = Math.floor(Math.random() * 256)
+  document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
 }
 
-// Function to reset the background color when the body is double-clicked
+
 function resetBackgroundColor() {
-  // Implement the function to reset background color
+  document.body.style.backgroundColor = 'lightgray'
 }
 
-// Capture Keyboard Input
 
-// Function to display the key pressed by the user
 function displayKeyPress(event) {
-  // Implement the function to display key pressed
+  document.getElementById('keyPressDisplay').textContent = `Key pressed: ${event.key}`
 }
 
-// Process Text Input
-
-// Function to display user input in real-time
 function displayUserInput() {
-  // Implement the function to display user input
+  const userInput = document.getElementById('textInput').value
+  document.getElementById('textInputDisplay').textContent = `You typed: ${userInput}`
 }
 
-// Attach Event Listeners
+function processFormSubmission(event) {
+  event.preventDefault()
+  const userInput = document.getElementById('textInput').value
+  document.getElementById('formSubmitDisplay').textContent = `Submitted: ${userInput}`
+}
+
+
 function setupEventListeners() {
-// Attach event listener to change background color when the button is clicked
-  document
-    .getElementById('changeColorButton')
-    .addEventListener('click', changeBackgroundColor)
+  const changeColorButton = document.getElementById('changeColorButton')
+  const resetColorButton = document.getElementById('resetColorButton')
 
-  // Attach event listener to reset background color when the body is double-clicked
-  document
-    .getElementById('resetColorButton')
-    .addEventListener('dblclick', resetBackgroundColor)
+  changeColorButton.addEventListener('click', changeBackgroundColor)
+  changeColorButton.addEventListener('mouseover', () => {
+    changeColorButton.style.backgroundColor = 'orange'
+  })
+  changeColorButton.addEventListener('mouseout', () => {
+    changeColorButton.style.backgroundColor = ''
+  })
+  resetColorButton.addEventListener('dblclick', resetBackgroundColor)
 
-  // Attach event listener to display key pressed when a key is pressed down
   document.addEventListener('keydown', displayKeyPress)
-
-  // Attach event listener to display user input in real-time as they type
   document.getElementById('textInput').addEventListener('input', displayUserInput)
+  document.getElementById('inputForm').addEventListener('submit', processFormSubmission)
 }
 
-// Initialize event listeners when the DOM is loaded
+
 if (typeof window !== 'undefined') {
   document.addEventListener('DOMContentLoaded', setupEventListeners)
 }
@@ -53,33 +58,6 @@ module.exports = {
   resetBackgroundColor,
   displayKeyPress,
   displayUserInput,
+  processFormSubmission,
   setupEventListeners,
 }
-function changeBackgroundColor(color) {
-  document.body.style.backgroundColor =  "lilac";
-}
-function resetBackgroundColor() {
-  document.body.style.backgroundColor = 'white';
-}
-const changeButton = document.getElementById('button');
-const resetButton = document.getElementById('reset-button');
-
-changeButton.addEventListener('click', changeBackgroundColor);
-resetButton.addEventListener('click', resetBackgroundColor);
-
-function displayKeyPress(event) {
-  const keyDisplay = document.getElementById("keyDisplay");
-  keyDisplay.textContent = "You pressed: " + event.key;
-}
-
-document.addEventListener("keydown", displayKeyPress);
-function displayUserInput() {
-  const userInput = document.getElementById("userInput");
-  const inputDisplay = document.getElementById("inputDisplay");
-
-  inputDisplay.textContent = userInput.value;
-}
-
-const userInput = document.getElementById("userInput");
-
-userInput.addEventListener("input", displayUserInput);
