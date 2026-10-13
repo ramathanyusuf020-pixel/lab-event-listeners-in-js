@@ -55,3 +55,31 @@ module.exports = {
   displayUserInput,
   setupEventListeners,
 }
+function changeBackgroundColor(color) {
+  document.body.style.backgroundColor =  "lilac";
+}
+function resetBackgroundColor() {
+  document.body.style.backgroundColor = 'white';
+}
+const changeButton = document.getElementById('button');
+const resetButton = document.getElementById('reset-button');
+
+changeButton.addEventListener('click', changeBackgroundColor);
+resetButton.addEventListener('click', resetBackgroundColor);
+
+function displayKeyPress(event) {
+  const keyDisplay = document.getElementById("keyDisplay");
+  keyDisplay.textContent = "You pressed: " + event.key;
+}
+
+document.addEventListener("keydown", displayKeyPress);
+function displayUserInput() {
+  const userInput = document.getElementById("userInput");
+  const inputDisplay = document.getElementById("inputDisplay");
+
+  inputDisplay.textContent = userInput.value;
+}
+
+const userInput = document.getElementById("userInput");
+
+userInput.addEventListener("input", displayUserInput);
